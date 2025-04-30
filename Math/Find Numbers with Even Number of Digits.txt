@@ -11,3 +11,6 @@ public:
         return cnt;
     }
 };
+
+TC:O(n*log(max_element))
+SC:O(1)
