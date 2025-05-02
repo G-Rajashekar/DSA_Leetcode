@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int maxTaskAssign(vector<int>& tasks, vector<int>& workers, int pills, int strength) {
+        sort(tasks.begin(),tasks.end());
+        sort(workers.begin(),workers.end(),greater<int>());
+        int n=tasks.size();
+        int m=workers.size();
+        int low=0;
+        int high=min(n,m);
+
+        int ans=-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            if (helper(tasks,workers,pills,strength,mid)){
+                ans=mid;
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return ans;
+    }
+    bool helper(vector<int>&tasks,vector<int>&workers,int pills,int strength,int mid){
+        multiset<int>st(begin(workers),begin(workers)+mid);
+
+        for (int i=mid-1;i>=0;i--){
+            int req=tasks[i];
+            auto it=prev(st.end());
+
+            if (*it>=req){
+                st.erase(it);
+            }
+            else {
+                if (pills<=0) return false;
+                else{
+                    auto weakestWorker=st.lower_bound(req-strength);
+
+                    if (weakestWorker==st.end()){
+                        return false;
+                    }
+                    st.erase(weakestWorker);
+                    pills--;
+                }
+            }
+        }
+        return true;
+    }
+};
+
+
+TC:O(nlogn+mlogm+min(n,m)log2min(n,m)))
+SC:O(min(n,m))
