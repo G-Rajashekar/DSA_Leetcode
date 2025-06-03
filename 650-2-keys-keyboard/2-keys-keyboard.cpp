@@ -1,21 +1,17 @@
 class Solution {
 public:
     int minSteps(int n) {
-        int curr = 1;
-        int copy = 0;
-        int steps = 0;
+        if (n==1) return  0;
+        return 1+helper(1,1,n);
+    }
 
-        while(curr<n){
-            if((n-curr)%curr==0){
-                copy = curr;
-                steps += 2;
-            }
-            else{
-                steps += 1;
-            }
-            curr += copy;
-        }
+    int helper(int curA,int copyA,int n){
+        if (curA==n) return 0;
+        if (curA>n) return 1000000;
 
-        return steps;
+        int copyAllPaste=2+helper(curA+curA,curA,n);
+        int paste=1+helper(curA+copyA,copyA,n);
+
+        return min(copyAllPaste,paste);
     }
 };
