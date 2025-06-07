@@ -16,8 +16,7 @@ public:
         }
         string res="";
         for (int i=0;i<n;i++){
-            if (mp.count(i) ||  s[i]=='*') continue;
-            else res.push_back(s[i]);
+            if (!mp.count(i)&& s[i]!='*')  res.push_back(s[i]);
         }
 
         return res;
