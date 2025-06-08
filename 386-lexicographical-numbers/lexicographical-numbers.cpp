@@ -14,6 +14,7 @@ public:
         res.push_back(num);
 
         for (int i=0;i<=9;i++){
+            if (num*10+i>n) return;
             helper(res,num*10+i,n);
         }
         return;
