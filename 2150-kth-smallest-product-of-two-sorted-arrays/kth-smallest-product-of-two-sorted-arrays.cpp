@@ -9,7 +9,6 @@ public:
             ll mid=(low+high)/2;
 
             ll cnt=helper(nums1,nums2,k,mid);
-           
            if (cnt>=k) {
                ans=mid;
                high=mid-1;
