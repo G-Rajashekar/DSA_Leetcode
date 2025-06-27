@@ -7,12 +7,19 @@ public:
         q.push(str);
         string ans="";
 
+        vector<int>freq(26,0);
+
+        for (auto x:s){
+            freq[x-'a']++;
+        }
+
         while(!q.empty()){
             auto it=q.front();
             q.pop();
-            for (char c='z';c>='a';c--){
+            for (int i=25;i>=0;i--){
+                char c=i+'a';
                 string temp=it+c;
-                if (temp.size()>7) continue;
+                if (temp.size()>7 || freq[i]<k) continue;
                 if (isExisit(s,temp,k)){
                     if (ans.size()<temp.size() || temp>ans) ans=temp;
                     q.push(temp);
