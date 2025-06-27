@@ -12,6 +12,7 @@ public:
             q.pop();
             for (char c='z';c>='a';c--){
                 string temp=it+c;
+                if (temp.size()>7) continue;
                 if (isExisit(s,temp,k)){
                     if (ans.size()<temp.size() || temp>ans) ans=temp;
                     q.push(temp);
