@@ -13,16 +13,11 @@ public:
         int j=0;
 
         while(i<n && j<m){
-            while(j<m && trainers[j]<players[i]){
-                j++;
-            }
-
-            if (j<m){
-                ans++;
-                j++;
-                i++;
-            }
+            while(j<m && trainers[j]<players[i]) j++;
+            if (j<m) ans++;
             else break;
+            i++;
+            j++;
         }
         return ans;
     }
