@@ -22,6 +22,7 @@ public:
                 j++;
                 i++;
             }
+            else break;
         }
         return ans;
     }
