@@ -12,11 +12,10 @@ public:
         int i=0;
         int j=0;
 
-        while(i<n){
+        for (int i=0;i<n;i++){
             while(j<m && trainers[j]<players[i]) j++;
             if (j<m) ans++;
             else break;
-            i++;
             j++;
         }
         return ans;
