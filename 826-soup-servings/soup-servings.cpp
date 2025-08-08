@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<double>>ops={{100,0},{75,25},{50,50},{25,75}};
     double soupServings(int n) {
-        if (n>=6000) return 1.0;
+        if (n>=5000) return 1.0;
         vector<vector<double>>dp(n+1,vector<double>(n+1,-1.0));
         return solve(n,n,dp);
     }
