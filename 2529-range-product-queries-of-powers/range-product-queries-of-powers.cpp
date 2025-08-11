@@ -3,13 +3,12 @@ public:
     const int mod = 1e9+7;
 
     long long modPow(long long base, long long exp) {
-        long long result = 1;
-        while (exp > 0) {
-            if (exp & 1) result = (result * base) % mod;
-            base = (base * base) % mod;
-            exp >>= 1;
-        }
-        return result;
+         if (exp==0) return 1;
+         long long half=modPow(base,exp/2);
+         long long res=(half*half)%mod;
+
+         if (exp%2) res=(res*base)%mod;
+         return res;
     }
 
     vector<int> productQueries(int n, vector<vector<int>>& queries) {
