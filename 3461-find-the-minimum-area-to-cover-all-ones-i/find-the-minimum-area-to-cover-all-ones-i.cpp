@@ -4,10 +4,10 @@ public:
         int n=grid.size();
         int m=grid[0].size();
 
-        int c1=INT_MAX;
-        int c2=INT_MIN;
-        int r1=INT_MAX;
-        int r2=INT_MIN;
+        int c1=m;
+        int c2=-1;
+        int r1=n;
+        int r2=-1;
 
         for (int i=0;i<n;i++){
             for (int j=0;j<m;j++){
