@@ -1,8 +1,6 @@
 class Solution {
 public:
     vector<int> getNoZeroIntegers(int n) {
-
-        unordered_map<string,bool>mp;
         int i=1;
 
         while(true){
@@ -11,11 +9,10 @@ public:
                 i++;
                 continue;
             }
-            int req=n-i;
-            if (mp.find(to_string(req))!=mp.end() || req==i){
-                return {req,i};
+            string req=to_string(n-i);
+            if (req.find('0')==string::npos){
+                return {stoi(req),i};
             }
-             mp[num]=true;
             i++;
         }
         return {-1,-1};
