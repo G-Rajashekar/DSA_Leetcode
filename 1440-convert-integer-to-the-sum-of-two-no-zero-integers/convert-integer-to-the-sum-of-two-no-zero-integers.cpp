@@ -1,20 +1,13 @@
 class Solution {
 public:
     vector<int> getNoZeroIntegers(int n) {
-        int i=1;
+        
+        for (int i=1;i<n;i++){
+            int req=n-i;
 
-        while(true){
-            string num=to_string(i);
-            if (num.find('0')!=string::npos){
-                i++;
-                continue;
-            }
-            string req=to_string(n-i);
-            if (req.find('0')==string::npos){
-                return {stoi(req),i};
-            }
-            i++;
+            if (to_string(i).find('0')==string::npos && to_string(req).find('0')==string::npos) return {i,req};
         }
+
         return {-1,-1};
     }
 };
