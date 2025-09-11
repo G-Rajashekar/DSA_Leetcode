@@ -1,37 +1,36 @@
 class Solution {
 public:
-    string sortVowels(string s) {
-        vector<char>vowels;
+    // Helper function to check if a character is a vowel
+    bool isVowel(char c) {
+        c = tolower(c);
+        return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+    }
 
-        for (auto c:s){
-            char ch=c;
-            if (ch>=65 && ch<=90){
-                ch=ch+32;
-            }
-            if (ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u'){
+    string sortVowels(string s) {
+        vector<char> vowels;
+
+        // Collect vowels
+        for (char c : s) {
+            if (isVowel(c)) {
                 vowels.push_back(c);
             }
         }
 
-        sort(vowels.begin(),vowels.end());
+        // Sort vowels
+        sort(vowels.begin(), vowels.end());
 
-        string t="";
-        int i=0;
+        string result;
+        int vowelIndex = 0;
 
-        for (auto c:s){
-            char ch=c;
-            if (ch>=65 && ch<=90){
-                ch=ch+32;
+        // Reconstruct string with sorted vowels
+        for (char c : s) {
+            if (isVowel(c)) {
+                result.push_back(vowels[vowelIndex++]);
+            } else {
+                result.push_back(c);
             }
-             if (ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u'){
-                t.push_back(vowels[i]);
-                i++;
-            }
-            else{
-                t.push_back(c);
-            }
-            
         }
-        return t;
+
+        return result;
     }
 };
