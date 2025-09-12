@@ -9,8 +9,7 @@ class Solution {
             if (isVowel(s.charAt(i))==true) total++;
         }
         if (total%2==0 && total!=0) return true;
-        if (total%2==1 && total!=1) return true;
-        if (total==1) return true;
+        if (total%2==1) return true;
         return false;
     }
 }
