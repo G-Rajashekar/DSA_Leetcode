@@ -1,38 +1,41 @@
 class Solution {
     public int countValidSelections(int[] nums) {
-         int n=nums.length;
-         int ans=0;
+        int n=nums.length;
 
-         int cnt=0;
+        int[] prefix=new int[n];
 
-         for (int num:nums){
-            if (num>0) cnt++;
-         }
-         
-         if (cnt==0) return 2*n;
+        prefix[0]=nums[0];
 
-         for (int i=0;i<n;i++){
-            int num=nums[i];
-            if (num==0){
-                int[] temp=Arrays.copyOf(nums,n);
-                if (helper(temp,i,-1,cnt)==true) ans++;
-                temp=Arrays.copyOf(nums,n);
-                if (helper(temp,i,1,cnt)==true) ans++;
-            }
-         }
-         return ans;
-    }
-
-    public boolean helper(int[] nums,int j,int dir,int nonzeros){
-        int i=j+dir;
-        while(nonzeros>0 && i>=0 && i<nums.length){
-            if (nums[i]>0){
-                nums[i]-=1;
-                if (nums[i]==0) nonzeros--;
-                dir*=-1;
-            }
-            i+=dir;
+        for (int i=1;i<n;i++){
+            prefix[i]=prefix[i-1]+nums[i];
         }
-        return nonzeros==0;
+
+        int ans=0;
+
+        for (int i=0;i<n;i++){
+            if (nums[i]==0){
+               int left,right;
+               if (i==0) {
+                   left=0;
+                   right=prefix[n-1]-nums[0];
+               }
+               else if (i==n-1){
+                    left=prefix[n-1]-nums[n-1];
+                    right=0;
+               }
+               else{
+                   left=prefix[i-1];
+                   right=prefix[n-1]-left;
+               }
+                
+                if (left==right) ans+=2;
+                else{
+                    if ((right-left)<=1 && right>left) ans++;
+                    if ((left-right)<=1 && left>right) ans++;
+                }
+
+            }
+        }
+        return ans;
     }
 }
