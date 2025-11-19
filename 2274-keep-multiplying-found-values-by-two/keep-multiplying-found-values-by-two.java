@@ -1,10 +1,9 @@
 class Solution {
     public int findFinalValue(int[] nums, int original) {
-        Set<Integer>st=new HashSet<>();
+        int[] vals=new int[1001];
+        for (int num:nums) vals[num]=1;
 
-        for (int num:nums) st.add(num);
-
-        while(st.contains(original)){
+        while(original<=1000 && vals[original]==1){
             original*=2;
         }
         return original;
