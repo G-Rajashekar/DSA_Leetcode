@@ -12,12 +12,10 @@ class Solution {
             }
         }
 
-        return helper(grid,0,0,k,0);
+        return helper(grid,0,0,k,0,n,m);
     }
 
-    public int helper(int[][] grid,int i,int j,int k,int r){
-         int n=grid.length;
-         int m=grid[0].length;
+    public int helper(int[][] grid,int i,int j,int k,int r,int n,int m){
 
          if (i>=n || j>=m) return 0;
 
@@ -29,8 +27,8 @@ class Solution {
          if (dp[i][j][newR]!=-1) return dp[i][j][newR];
          long ways=0;
 
-         ways+=helper(grid,i+1,j,k,newR);
-         ways+=helper(grid,i,j+1,k,newR);
+         ways+=helper(grid,i+1,j,k,newR,n,m);
+         ways+=helper(grid,i,j+1,k,newR,n,m);
 
          return dp[i][j][newR]=(int)ways%MOD;
 
