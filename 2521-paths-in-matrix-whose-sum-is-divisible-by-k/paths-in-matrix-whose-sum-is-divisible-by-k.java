@@ -24,14 +24,15 @@ class Solution {
          if (i==n-1 && j==m-1){
             return (r+grid[i][j])%k==0?1:0;
          }
+         int newR=(r+grid[i][j])%k;
 
-         if (dp[i][j][(r+grid[i][j])%k]!=-1) return dp[i][j][(r+grid[i][j])%k];
+         if (dp[i][j][newR]!=-1) return dp[i][j][newR];
          long ways=0;
 
-         ways+=helper(grid,i+1,j,k,(r+grid[i][j])%k);
-         ways+=helper(grid,i,j+1,k,(r+grid[i][j])%k);
+         ways+=helper(grid,i+1,j,k,newR);
+         ways+=helper(grid,i,j+1,k,newR);
 
-         return dp[i][j][(r+grid[i][j])%k]=(int)ways%MOD;
+         return dp[i][j][newR]=(int)ways%MOD;
 
     }
 }
