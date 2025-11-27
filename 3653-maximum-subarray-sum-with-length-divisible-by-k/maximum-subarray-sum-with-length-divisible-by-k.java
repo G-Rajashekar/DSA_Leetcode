@@ -1,28 +1,28 @@
 class Solution {
     public long maxSubarraySum(int[] nums, int k) {
-        int n = nums.length;
-        long[] pre = new long[n + 1];
+        int n=nums.length;
         
-        for (int i = 0; i < n; i++) {
-            pre[i + 1] = pre[i] + nums[i];
+        long[] prefix=new long[n];
+        prefix[0]=nums[0];
+        for (int i=1;i<n;i++){
+            prefix[i]=prefix[i-1]+nums[i];
         }
 
-        long res = Long.MIN_VALUE;
+        long ans=Long.MIN_VALUE;
 
-        for (int start = 0; start < k; start++) {
-            long currSum = 0;
+        for (int i=0;i<k;i++){
+            long cur=0;
 
-            for (int i = start; i + k - 1 < n; i += k) {
-                int r = i + k - 1; // full block
-                long blockSum = pre[r + 1] - pre[i];
-                currSum += blockSum;
-                res = Math.max(currSum, res);
-                if (currSum < 0)
-                    currSum = 0;
+            for (int j=i;j+k-1<n;j+=k){
+                int r=j+k-1;
+                cur+=prefix[r]-(j==0?0:prefix[j-1]);
+
+                ans=Math.max(ans,cur);
+
+                if (cur<0) cur=0;
+
             }
         }
-
-        return res;
-
+        return ans;
     }
 }
