@@ -11,10 +11,7 @@ class Solution {
                 ans+=r;
                 r=0;
             }
-        }
-
-        for (int i=n-1;i>=0;i--){
-            if (directions.charAt(i)=='L') l++;
+            if (directions.charAt(n-i-1)=='L') l++;
             else{
                 ans+=l;
                 l=0;
