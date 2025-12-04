@@ -9,7 +9,8 @@ class Solution {
         int ans=0;
 
         for (int i=l;i<=r;i++){
-            if (directions.charAt(i)=='L' || directions.charAt(i)=='R') ans++;
+            char ch=directions.charAt(i);
+            if (ch=='L' || ch=='R') ans++;
         }
         return ans;
     }
