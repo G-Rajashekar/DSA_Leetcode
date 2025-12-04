@@ -10,7 +10,7 @@ class Solution {
 
         for (int i=l;i<=r;i++){
             char ch=directions.charAt(i);
-            if (ch=='L' || ch=='R') ans++;
+            if (ch!='S') ans++;
         }
         return ans;
     }
