@@ -18,9 +18,9 @@ class Solution {
 
         int ans=0;
 
-        for (int i=0;i<n;i++){
-            if ((prefix[i]+sufix[i])%2==0) ans++;
+        for (int i=0;i<n-1;i++){
+           if (Math.abs(prefix[i]-sufix[i])%2==0) ans++;
         }
-        return ans==0?0:ans-1;
+        return ans;
     }
 }
