@@ -1,10 +1,7 @@
 class Solution {
     public int countTriples(int n) {
         HashSet<Integer>hset=new HashSet<>();
-
-
         for (int i=1;i<=n;i++) hset.add(i*i);
-
         int cnt=0;
 
         for (int i=1;i<=n;i++){
