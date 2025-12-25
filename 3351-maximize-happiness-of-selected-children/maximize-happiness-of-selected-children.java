@@ -7,6 +7,7 @@ class Solution {
         int dec=0;
         for (int i=n-1;i>=n-k;i--){
             if ((happiness[i]-dec)>0) ans+=happiness[i]-dec;
+            else break;
             dec++;
         }
         return ans;
